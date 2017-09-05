@@ -351,6 +351,14 @@
     [self.webView setBackgroundColor:bgColor];
 }
 
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [[UIMenuController sharedMenuController] setMenuVisible:NO animated:NO];
+    }];
+    
+    return [super canPerformAction:action withSender:sender];
+}
+
 - (void)setLockToken:(NSInteger)lockToken
 {
 	_userAgentLockToken = lockToken;
